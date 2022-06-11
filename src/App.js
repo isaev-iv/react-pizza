@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./scss/app.scss";
+import pizzas from "./assets/pizzas.json";
+import Header from "./components/Header.jsx";
+import Categories from "./components/Categories.jsx";
+import Sort from "./components/Sort.jsx";
+import PizzaBlock from "./components/PizzaBlock";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <Header />
+      <div className="content">
+        <div className="container">
+          <div className="content__top">
+            <Categories />
+            <Sort />
+          </div>
+          <h2 className="content__title">Все пиццы</h2>
+          <div className="content__items">
+            {pizzas.map((obj) => (
+              <PizzaBlock
+                key={obj.id}
+                title={obj.title}
+                price={obj.price}
+                image={obj.imageUrl}
+                sizes={obj.sizes}
+                types={obj.types}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
